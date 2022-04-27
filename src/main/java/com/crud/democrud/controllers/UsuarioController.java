@@ -45,4 +45,9 @@ public class    UsuarioController {
         }
     }
 
+    @PutMapping(path = "/{id}")
+    public UsuarioModel actualizarUsuario(@PathVariable(value = "id") Long id, @RequestBody UsuarioModel usuarioModel){
+        return this.usuarioService.actualizarUsuario(id,usuarioModel);
+    }
+
 }

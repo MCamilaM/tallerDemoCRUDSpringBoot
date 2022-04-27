@@ -39,6 +39,12 @@ public class UsuarioService {
         }
     }
 
+    public UsuarioModel actualizarUsuario(Long id, UsuarioModel usuarioModel){
+            Optional<UsuarioModel> usuario = usuarioRepository.findById(id);
+            usuario.get().setNombre(usuarioModel.getNombre());
+            usuario.get().setEmail(usuarioModel.getEmail());
+            usuario.get().setPrioridad(usuarioModel.getPrioridad());
+            return usuarioRepository.save(usuario.get());
+        }
 
-    
 }
