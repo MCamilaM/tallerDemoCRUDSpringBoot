@@ -1,9 +1,12 @@
 package com.crud.democrud.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "usuarioRol")
+@Table(name = "usuario_rol")
 public class UsuarioRolModel {
 
     @Id
@@ -13,8 +16,9 @@ public class UsuarioRolModel {
 
     private String rol;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_model")
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = UsuarioModel.class, optional = false)
+    @JoinColumn(name = "id_usuario", nullable = false)
+    @JsonBackReference
     private UsuarioModel usuarioModel;
 
     public UsuarioRolModel(String rol, UsuarioModel usuarioModel) {

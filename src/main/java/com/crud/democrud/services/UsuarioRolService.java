@@ -4,10 +4,12 @@ import com.crud.democrud.models.UsuarioModel;
 import com.crud.democrud.models.UsuarioRolModel;
 import com.crud.democrud.repositories.IUsuarioRolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
+@Service
 public class UsuarioRolService {
     @Autowired
     IUsuarioRolRepository iUsuarioRolRepository;

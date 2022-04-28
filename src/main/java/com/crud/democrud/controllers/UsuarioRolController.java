@@ -1,7 +1,7 @@
 package com.crud.democrud.controllers;
 
-import com.crud.democrud.models.UsuarioModel;
-import com.crud.democrud.services.UsuarioService;
+import com.crud.democrud.models.UsuarioRolModel;
+import com.crud.democrud.services.UsuarioRolService;
 import com.crud.democrud.utility.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -9,25 +9,27 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 
 @CrossOrigin
 @RestController
-@RequestMapping("/usuario")
-public class    UsuarioController {
+@RequestMapping("/usuario/rol")
+public class UsuarioRolController {
+
     @Autowired
-    UsuarioService usuarioService;
+    UsuarioRolService usuarioRolService;
 
     private Response response = new Response();
     private HttpStatus httpStatus = HttpStatus.OK;
 
+
     @GetMapping()
-    public ResponseEntity<Response> obtenerUsuarios(){
+    public ResponseEntity<Response> index() {
         response.restart();
         try {
-            response.data = this.usuarioService.obtenerUsuarios();
+            response.data = this.usuarioRolService.obtenerUsuarioRol();
             httpStatus = HttpStatus.OK;
         } catch (Exception exception) {
             getErrorMessageInternal(exception);
@@ -40,7 +42,7 @@ public class    UsuarioController {
     public ResponseEntity<Response> obtenerUsuarioPorId(@PathVariable(value = "id") Long id) {
         response.restart();
         try {
-            response.data = this.usuarioService.obtenerPorId(id);
+            response.data = this.usuarioRolService.obtenerUsuarioRolPorId(id);
             httpStatus = HttpStatus.OK;
         } catch (Exception exception) {
             getErrorMessageInternal(exception);
@@ -50,10 +52,10 @@ public class    UsuarioController {
 
 
     @PostMapping()
-    public ResponseEntity<Response> guardarUsuario(@RequestBody UsuarioModel usuario) {
+    public ResponseEntity<Response> guardarUsuarioRol(@RequestBody UsuarioRolModel usuarioRolModel) {
         response.restart();
         try {
-            response.data =  this.usuarioService.guardarUsuario(usuario);
+            response.data = this.usuarioRolService.guardarUsuarioRol(usuarioRolModel);
             httpStatus = HttpStatus.CREATED;
         } catch (DataAccessException exception) {
             getErrorMessageForResponse(exception);
@@ -63,22 +65,17 @@ public class    UsuarioController {
         return new ResponseEntity(response, httpStatus);
     }
 
-    @GetMapping("/query")
-    public ArrayList<UsuarioModel> obtenerUsuarioPorPrioridad(@RequestParam("prioridad") Integer prioridad) {
-        return this.usuarioService.obtenerPorPrioridad(prioridad);
-    }
-
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Response> eliminarPorId(@PathVariable("id") Long id) {
+    public ResponseEntity<Response> eliminarUsuarioRolPorId(@PathVariable("id") Long id) {
         response.restart();
         try {
-            response.data = this.usuarioService.eliminarUsuario(id);
+            response.data = this.usuarioRolService.eliminarUsuarioRol(id);
             if (response.data == null) {
-                response.message = "El usuario no existe";
+                response.message = "El usuario rol no existe";
                 httpStatus = HttpStatus.NOT_FOUND;
             } else {
-                response.message = "El usuario fue removido exitosamente";
+                response.message = "El usuario rol fue removido exitosamente";
                 httpStatus = HttpStatus.OK;
             }
         } catch (DataAccessException exception) {
@@ -89,15 +86,14 @@ public class    UsuarioController {
         return new ResponseEntity(response, httpStatus);
     }
 
-
     @PutMapping(path = "/{id}")
-    public ResponseEntity<Response> actualizarUsuario(
+    public ResponseEntity<Response> actualizarUsuarioRol(
             @PathVariable(value = "id") Long id,
-            @RequestBody UsuarioModel usuarioModel
+            @RequestBody UsuarioRolModel usuarioRolModel
     ) {
         response.restart();
         try {
-            response.data = this.usuarioService.actualizarUsuario(id,usuarioModel);
+            response.data = this.usuarioRolService.actualizarUsuarioRol(id,usuarioRolModel);
             httpStatus = HttpStatus.OK;
         } catch (DataAccessException exception) {
             getErrorMessageForResponse(exception);
@@ -152,4 +148,5 @@ public class    UsuarioController {
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         }
     }
+
 }
