@@ -1,16 +1,21 @@
 package com.crud.democrud.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Clase para la definicion del modelo Usuario.
+ * @author Camila Morales
+ */
 @Entity
 @Table(name = "usuario")
 public class UsuarioModel {
 
+    /**
+     * Propiedades
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -29,6 +34,9 @@ public class UsuarioModel {
     @JsonManagedReference
     private List<UsuarioRolModel> usuarioRoles;
 
+    /**
+     *Getters y Setters
+     */
     public void setPrioridad(Integer prioridad) {
         this.prioridad = prioridad;
     }
@@ -57,18 +65,29 @@ public class UsuarioModel {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * Constructor
+     * @param nombre
+     * @param email
+     * @param prioridad
+     */
     public UsuarioModel(String nombre, String email, Integer prioridad) {
         this.nombre = nombre;
         this.email = email;
         this.prioridad = prioridad;
     }
 
+    /**
+     * Constructor vacio
+     */
     public UsuarioModel() {
 
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+
 
 }

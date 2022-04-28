@@ -1,14 +1,20 @@
 package com.crud.democrud.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
+/**
+ * Clase para la definicion del modelo Usuario Rol.
+ * @author Camila Morales
+ */
 @Entity
 @Table(name = "usuario_rol")
 public class UsuarioRolModel {
 
+    /**
+     * Propiedades
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -21,14 +27,25 @@ public class UsuarioRolModel {
     @JsonBackReference
     private UsuarioModel usuarioModel;
 
+    /**
+     * Constructor
+     * @param rol
+     * @param usuarioModel
+     */
     public UsuarioRolModel(String rol, UsuarioModel usuarioModel) {
         this.rol = rol;
         this.usuarioModel = usuarioModel;
     }
 
+    /**
+     * Constructor vacio
+     */
     public UsuarioRolModel() {
     }
 
+    /**
+     * Getters y Setters
+     */
     public Long getIdRol() {
         return idRol;
     }
