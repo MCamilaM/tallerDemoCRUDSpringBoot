@@ -1,6 +1,7 @@
 package com.crud.democrud.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -14,6 +15,9 @@ public class UsuarioModel {
     private String nombre;
     private String email;
     private Integer prioridad;
+
+    @OneToMany(mappedBy = "usuarioModel")
+    private List<UsuarioRolModel> usuarioRolModelList;
 
     public void setPrioridad(Integer prioridad) {
         this.prioridad = prioridad;
