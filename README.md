@@ -1,4 +1,6 @@
-# Actividad Spring Boot 
+# Actividad Spring Boot <a href="https://spring.io/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/></a> 
+
+
 En el presente repositorio se aloja la solución a la actividad planteada del curso de desarrollo web 2.0 para asimilar los conocimientos adquiridos sobre Spring Boot.
 
 
