@@ -28,17 +28,17 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class UsuarioServiceMockTest {
 
-  @MockBean
-  UsuarioRepository usuarioRepository;
+    @MockBean
+    UsuarioRepository usuarioRepository;
 
-  @Autowired
-  UsuarioService usuarioService;
+    @Autowired
+    UsuarioService usuarioService;
 
-  @Test
-  public void testUsuarioMock(){
-    when(usuarioRepository.findAll()).thenReturn(new ArrayList<>());
-    assertThat(usuarioService.obtenerUsuarios()).isEmpty();
-    verify(usuarioRepository).findAll();
-  }
+    @Test
+    public void testUsuarioMock() {
+        when(usuarioRepository.findAll()).thenReturn(new ArrayList<>());
+        assertThat(usuarioService.obtenerUsuarios()).isEmpty();
+        verify(usuarioRepository).findAll();
+    }
 
 }

@@ -17,7 +17,7 @@ public class UsuarioRolModel {
     private String rol;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = UsuarioModel.class, optional = false)
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @JoinColumn(name = "id_usuario", nullable = true)
     @JsonBackReference
     private UsuarioModel usuarioModel;
 

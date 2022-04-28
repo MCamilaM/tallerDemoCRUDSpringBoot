@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @CrossOrigin
 @RestController
 @RequestMapping("/usuario")
-public class    UsuarioController {
+public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
@@ -24,7 +24,7 @@ public class    UsuarioController {
     private HttpStatus httpStatus = HttpStatus.OK;
 
     @GetMapping()
-    public ResponseEntity<Response> obtenerUsuarios(){
+    public ResponseEntity<Response> obtenerUsuarios() {
         response.restart();
         try {
             response.data = this.usuarioService.obtenerUsuarios();
@@ -53,7 +53,7 @@ public class    UsuarioController {
     public ResponseEntity<Response> guardarUsuario(@RequestBody UsuarioModel usuario) {
         response.restart();
         try {
-            response.data =  this.usuarioService.guardarUsuario(usuario);
+            response.data = this.usuarioService.guardarUsuario(usuario);
             httpStatus = HttpStatus.CREATED;
         } catch (DataAccessException exception) {
             getErrorMessageForResponse(exception);
@@ -97,7 +97,7 @@ public class    UsuarioController {
     ) {
         response.restart();
         try {
-            response.data = this.usuarioService.actualizarUsuario(id,usuarioModel);
+            response.data = this.usuarioService.actualizarUsuario(id, usuarioModel);
             httpStatus = HttpStatus.OK;
         } catch (DataAccessException exception) {
             getErrorMessageForResponse(exception);
@@ -125,13 +125,12 @@ public class    UsuarioController {
      * Administrador para las excepciones a nivel de SQL con respecto al manejo del acceso a los datos
      *
      * @param exception Objeto DataAccessException
-     *
      * @author Julian Lasso <julian.lasso@sofka.com.co>
      * @since 1.0.0
      */
     private void getErrorMessageForResponse(DataAccessException exception) {
         response.error = true;
-        if(exception.getRootCause() instanceof SQLException) {
+        if (exception.getRootCause() instanceof SQLException) {
             SQLException sqlEx = (SQLException) exception.getRootCause();
             var sqlErrorCode = sqlEx.getErrorCode();
             switch (sqlErrorCode) {

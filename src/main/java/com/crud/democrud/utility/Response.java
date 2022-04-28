@@ -3,8 +3,8 @@ package com.crud.democrud.utility;
 /**
  * Clase para el manejo de las respuestas de las API
  *
- * @version 1.0.0 2022-03-20
  * @author Julian Lasso <julian.lasso@sofka.com.co>
+ * @version 1.0.0 2022-03-20
  * @since 1.0.0
  */
 public class Response {

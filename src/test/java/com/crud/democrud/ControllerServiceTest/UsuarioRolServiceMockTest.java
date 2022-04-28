@@ -1,6 +1,6 @@
 package com.crud.democrud.ControllerServiceTest;
 
-import com.crud.democrud.repositories.IUsuarioRolRepository;
+import com.crud.democrud.repositories.usuarioRolRepository;
 import com.crud.democrud.services.UsuarioRolService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +17,15 @@ import static org.mockito.Mockito.when;
 public class UsuarioRolServiceMockTest {
 
     @MockBean
-    IUsuarioRolRepository iUsuarioRolRepository;
+    usuarioRolRepository usuarioRolRepository;
 
     @Autowired
     UsuarioRolService usuarioRolService;
 
     @Test
-    public void testUsuarioRolMock(){
-        when(iUsuarioRolRepository.findAll()).thenReturn(new ArrayList<>());
+    public void testUsuarioRolMock() {
+        when(usuarioRolRepository.findAll()).thenReturn(new ArrayList<>());
         assertThat(usuarioRolService.obtenerUsuarioRol()).isEmpty();
-        verify(iUsuarioRolRepository).findAll();
+        verify(usuarioRolRepository).findAll();
     }
 }

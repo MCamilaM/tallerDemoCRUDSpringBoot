@@ -93,7 +93,7 @@ public class UsuarioRolController {
     ) {
         response.restart();
         try {
-            response.data = this.usuarioRolService.actualizarUsuarioRol(id,usuarioRolModel);
+            response.data = this.usuarioRolService.actualizarUsuarioRol(id, usuarioRolModel);
             httpStatus = HttpStatus.OK;
         } catch (DataAccessException exception) {
             getErrorMessageForResponse(exception);
@@ -121,13 +121,12 @@ public class UsuarioRolController {
      * Administrador para las excepciones a nivel de SQL con respecto al manejo del acceso a los datos
      *
      * @param exception Objeto DataAccessException
-     *
      * @author Julian Lasso <julian.lasso@sofka.com.co>
      * @since 1.0.0
      */
     private void getErrorMessageForResponse(DataAccessException exception) {
         response.error = true;
-        if(exception.getRootCause() instanceof SQLException) {
+        if (exception.getRootCause() instanceof SQLException) {
             SQLException sqlEx = (SQLException) exception.getRootCause();
             var sqlErrorCode = sqlEx.getErrorCode();
             switch (sqlErrorCode) {
